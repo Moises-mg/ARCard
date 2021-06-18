@@ -12,20 +12,31 @@
         <a-scene embedded vr-mode-ui="enabled: false" arjs="sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
 
         <a-assets>
-            <a-asset-item id="animated-asset" src="./models/skull/scene.gltf"></a-asset-item>
+            <a-asset-item id="animated-asset" src="./Assets/models/skull/scene.gltf"></a-asset-item>
+            <img id="my-image" src="./Assets/Img/Profile.png"> 
+            <img id="rrssL" src="./Assets/Img/Linkedin.png"> 
+             <img id="rrssT" src="./Assets/Img/Twitter.png"> 
+            <img id="phone" src="./Assets/Img/Phone.png"> 
+            <img id="local" src="./Assets/Img/pngegg.png"> 
+            <video id="vPresentation" autoplay loop="true" src="./Assets/Video/Video.mp4"></video>
+               
         </a-assets>
 
-        <a-marker type='barcode' value='7'>
-            <a-box position='0 0.5 0' color="yellow"></a-box>
-        </a-marker>
+        <a-marker type='barcode' value='6'>
+            <a-entity rotation="-90 0 0" animation="property: scale; from:0 0 0 ; to:1 1 1; dur: 3000">
+                <a-plane   position="0 0 -4"  width="5" height="4" color="#7BC8A4" scale="" visible="" material="" geometry=""></a-plane>
+                <a-text position="-0.57781 1.38608 -3.8" value="Moisés Martínez " text="value: Moisés Martínez"></a-text>
+                <a-image position="-1.2935 1.3598 -3.8" src="#my-image" material="" geometry=""></a-image>
+                <a-image scale="0.65 0.65 0.65" position="-1.2935 -0.57152 -3.8" src="#rrssL" material="" geometry=""></a-image>
+                <a-image scale="0.65 0.65 0.65" position="-0.2935 -0.57152 -3.8" src="#rrssT" material="" geometry=""></a-image>
+                <a-image scale="0.55 0.55 0.55" position="0.64 -0.57152 -3.8" src="#phone" material="" geometry=""></a-image>
+                <a-image scale="0.55 0.55 0.55" position="1.53 -0.57152 -3.8" src="#local" material="" geometry=""></a-image>
+                <a-video src="#vPresentation" width="5" height="4" position="0 0 -4.5" animation="property: position; to:5 0 -4.1; dur: 1500; delay:3000"></a-video>
 
-        <a-marker id="animated-marker" type='barcode' value='6'>
-            <a-entity
-            rotation="0 0 0" animation="property: rotation; to: 360 360 0; loop: true; dur: 10000"
-                gltf-model="#animated-asset"
-                scale="2 2 2">
             </a-entity>
         </a-marker>
+
+        
 
         <a-entity camera></a-entity>
         </a-scene>
