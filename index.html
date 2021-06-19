@@ -8,6 +8,8 @@
     <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
     <script>
         window.onload = function() {
+
+           
             AFRAME.registerComponent('videohandler', {
                 init: function () {
                     var marker = this.el;
@@ -41,7 +43,7 @@
                
         </a-assets>
 
-        <a-marker videohandler type='barcode' value='6'>
+        <a-marker  markerhandler  emitevents="true" cursor="rayOrigin: mouse"  id="idMarker" emitevents="true"  cursor="rayOrigin: mouse" videohandler type='barcode' value='6'>
             <a-entity rotation="-90 0 0" animation="property: scale; from:0 0 0 ; to:1 1 1; dur: 3000">
                 <a-plane   position="0 0 -4"  width="5" height="4" color="#7BC8A4" scale="" visible="" material="" geometry=""></a-plane>
                 <a-text position="-0.57781 1.38608 -3.8" value="Moisés Martínez " text="value: Moisés Martínez"></a-text>
@@ -59,5 +61,28 @@
 
         <a-entity camera></a-entity>
         </a-scene>
+        <script>
+             AFRAME.registerComponent('markerhandler', {
+
+                init: function() {
+
+                    const idMarker = document.querySelector("#idMarker");
+                    const idRrssL = document.querySelector("#rrssL");
+                   
+                    // every click, we make our model grow in size :)
+                    idMarker.addEventListener('click', function(ev, target){
+                        /* const intersectedElement = ev && ev.detail && ev.detail.intersectedEl;
+                        if (aEntity && intersectedElement === aEntity) {
+                            const scale = aEntity.getAttribute('scale');
+                            Object.keys(scale).forEach((key) => scale[key] = scale[key] + 1);
+                            aEntity.setAttribute('scale', scale);
+                        } */
+                        console.log("Pulsado");
+                        alert("Hello! I am an alert box!!");
+                    });
+                }});
+             
+            
+        </script>
     </body>
 </html>
