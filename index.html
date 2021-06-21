@@ -30,12 +30,24 @@
     </script>
     <script>
         window.onload = function () {
-          document
-            .querySelector(".button")
-            .addEventListener("click", function () {
+          document.querySelector("#Twitter").addEventListener("click", function () {
             
-                  alert("HOLA");
+                var myWindow = window.open("https://twitter.com/?lang=es", "_parent");
+                
             });
+            document.querySelector("#Linkedin").addEventListener("click", function () {
+            
+            var myWindow = window.open("https://es.linkedin.com/", "_parent");
+             });
+
+            document.querySelector("#Maps").addEventListener("click", function () {
+            
+            var myWindow = window.open("https://www.google.es/maps/@36.7234593,-4.4013933,14z?hl=es", "_parent");
+             });
+            
+
+
+         
         };
       </script>
       <style>
@@ -86,17 +98,13 @@
             <button class="button" id="Maps"></button>
             <button class="button" id="Linkedin"></button>
             <button class="button" id="Twitter"></button>
-            <button class="button" id="Phone"></button>
+            <a href="tel:+34678567876" class="button" id="Phone"></a>
           </div>
          <a-scene embedded vr-mode-ui="enabled: false" arjs="sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
 
         <a-assets videohandler>
             <a-asset-item id="animated-asset" src="./Assets/models/skull/scene.gltf"></a-asset-item>
             <img id="my-image" src="./Assets/Img/Profile.png"> 
-            <img id="rrssL" src="./Assets/Img/Linkedin.png"> 
-             <img id="rrssT" src="./Assets/Img/Twitter.png"> 
-            <img id="phone" src="./Assets/Img/Phone.png"> 
-            <img id="local" src="./Assets/Img/pngegg.png"> 
             <video  id="vPresentation"   loop="true" src="./Assets/Video/Video.mp4"></video>
                
         </a-assets>
