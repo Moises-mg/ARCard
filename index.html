@@ -31,12 +31,10 @@
     <script>
         window.onload = function () {
           document
-            .querySelector(".say-hi-button")
+            .querySelector(".button")
             .addEventListener("click", function () {
-              // here you can change also a-scene or a-entity properties, like
-              // changing your 3D model source, size, position and so on
-              // or you can just open links, trigger actions...
-              alert("Hi there!");
+            
+                  alert("HOLA");
             });
         };
       </script>
@@ -46,27 +44,49 @@
           bottom: 0;
           left: 0;
           width: 100%;
-          height: 5em;
+          height: 4em;
+          background-color: rgba(88, 88,88, 0.3);
           display: flex;
-          justify-content: center;
+          justify-content: space-around;
           align-items: center;
           z-index: 10;
         }
     
-        .say-hi-button {
-          padding: 0.25em;
+        .button {
+         /*  padding: 0.25em;
           border-radius: 4px;
+          
+          
+          color: black; */
+          background-color: transparent;
           border: none;
-          background: white;
-          color: black;
           width: 4em;
-          height: 2em;
+          height: 4em;
+          background-size: cover;
+
         }
+        #Linkedin{
+            background-image: url("./Assets/Img/Linkedin.png");
+        }
+        #Maps{
+            background-image: url("./Assets/Img/pngegg.png");
+        }
+        #Twitter{
+            background-image: url("./Assets/Img/Twitter.png");
+        }
+        #Phone{
+            background-image: url("./Assets/Img/Phone.png");
+        }
+
       </style>
     <body style='margin : 0px; overflow: hidden;'>
         
         <div class="buttons">
-            <button class="say-hi-button">SAY HI!</button>
+            
+            <button class="button" id="Maps"></button>
+            <button class="button" id="Linkedin"></button>
+            <button class="button" id="Twitter"></button>
+            <button class="button" id="Phone"></button>
           </div>
          <a-scene embedded vr-mode-ui="enabled: false" arjs="sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
 
