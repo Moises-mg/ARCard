@@ -1,132 +1,83 @@
-<!doctype HTML>
+<!DOCTYPE html>
+
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    </head>
-    <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
-    <script src="https://raw.githack.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
-    <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
-    <script>
-        window.onload = function() {
+  <head>
+    <title>Gesture Interactions - A-Frame & AR.js</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="styles.css">
 
-           
-            AFRAME.registerComponent('videohandler', {
-                init: function () {
-                    var marker = this.el;
-    
-                    this.vid = document.querySelector("#vPresentation");
-    
-                    marker.addEventListener('markerFound', function () {
-                        this.vid.play();
-                    }.bind(this));
-    
-            marker.addEventListener('markerLost', function() {
-                this.vid.pause();
-                this.vid.currentTime = 0;
-            }.bind(this));
-                }
-            });
-        };
-    </script>
-    <script>
-        window.onload = function () {
-          document.querySelector("#Twitter").addEventListener("click", function () {
-            
-                var myWindow = window.open("https://twitter.com/?lang=es", "_parent");
-                
-            });
-            document.querySelector("#Linkedin").addEventListener("click", function () {
-            
-            var myWindow = window.open("https://es.linkedin.com/", "_parent");
-             });
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <script src="gesture-detector.js"></script>
+    <script src="gesture-handler.js"></script>
+  </head>
 
-            document.querySelector("#Maps").addEventListener("click", function () {
-            
-            var myWindow = window.open("https://www.google.es/maps/@36.7234593,-4.4013933,14z?hl=es", "_parent");
-             });
-            
+  <body>
+    <a-scene
+      arjs
+      embedded
+      renderer="logarithmicDepthBuffer: true;"
+      vr-mode-ui="enabled: false"
+      gesture-detector
+      id="scene"
+    >
+      <a-assets>
+        <a-asset-item
+          id="bowser"
+          src="https://cdn.glitch.com/06bd98b4-97ee-4c07-a546-fe39ca205034%2Fbowser.glb"
+        >
+        </a-asset-item>
+      </a-assets>
 
-
-         
-        };
-      </script>
-      <style>
-        .buttons {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 100%;
-          height: 4em;
-          background-color: rgba(88, 88,88, 0.3);
-          display: flex;
-          justify-content: space-around;
-          align-items: center;
-          z-index: 10;
-        }
-    
-        .button {
-         /*  padding: 0.25em;
-          border-radius: 4px;
+      <a-marker
+        preset="hiro"
+        raycaster="objects: .clickable"
+        emitevents="true"
+        cursor="fuse: false; rayOrigin: mouse;"
+        id="markerA"
+      >
+        <a-entity
+          id="bowser-model"
           
-          
-          color: black; */
-          background-color: transparent;
-          border: none;
-          width: 4em;
-          height: 4em;
-          background-size: cover;
+          position="0 0 0"
+          scale="0.05 0.05 0.05"
+          class="clickable"
+          gesture-handler
+        >
+        <a-box color="tomato" depth="8" height="4" width="0.5"></a-box>
 
-        }
-        #Linkedin{
-            background-image: url("./Assets/Img/Linkedin.png");
-        }
-        #Maps{
-            background-image: url("./Assets/Img/pngegg.png");
-        }
-        #Twitter{
-            background-image: url("./Assets/Img/Twitter.png");
-        }
-        #Phone{
-            background-image: url("./Assets/Img/Phone.png");
-        }
+        </a-entity>
+       <!--  <a-entity  id="bowser-model"   position="0 0 0" class="clickable"
+        gesture-handler>
+            <a-plane   position="0 0 -4"  width="5" height="4" color="#7BC8A4" scale="" visible="" material="" geometry=""></a-plane>
+            <a-text position="-0.57781 1.38608 -3.8" value="Moisés Martínez " text="value: Moisés Martínez"></a-text>
+            <a-image position="-1.2935 1.3598 -3.8" src="#my-image" material="" geometry=""></a-image>
+            <a-image scale="0.65 0.65 0.65" position="-1.2935 -0.57152 -3.8" src="#rrssL" material="" geometry=""></a-image>
+            <a-image scale="0.65 0.65 0.65" position="-0.2935 -0.57152 -3.8" src="#rrssT" material="" geometry=""></a-image>
+            <a-image scale="0.55 0.55 0.55" position="0.64 -0.57152 -3.8" src="#phone" material="" geometry=""></a-image>
+            <a-image scale="0.55 0.55 0.55" position="1.53 -0.57152 -3.8" src="#local" material="" geometry=""></a-image>
+            <a-video src="#vPresentation" width="5" height="4" position="0 0 -4.5" animation="property: position; to:5 0 -4.1; dur: 1500; delay:3000"></a-video> 
+ 
+        </a-entity> -->
 
-      </style>
-    <body style='margin : 0px; overflow: hidden;'>
-        
-        <div class="buttons">
-            
-            <button class="button" id="Maps"></button>
-            <button class="button" id="Linkedin"></button>
-            <button class="button" id="Twitter"></button>
-            <a href="tel:+34678567876" class="button" id="Phone"></a>
-          </div>
-         <a-scene embedded vr-mode-ui="enabled: false" arjs="sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
+      </a-marker>
 
-        <a-assets videohandler>
-            <a-asset-item id="animated-asset" src="./Assets/models/skull/scene.gltf"></a-asset-item>
-            <img id="my-image" src="./Assets/Img/Profile.png"> 
-            <video  id="vPresentation"   loop="true" src="./Assets/Video/Video.mp4"></video>
-               
-        </a-assets>
-
-        <a-marker  markerhandler  emitevents="true" cursor="rayOrigin: mouse"  id="idMarker" emitevents="true"  cursor="rayOrigin: mouse" videohandler type='barcode' value='6'>
-            <a-entity rotation="-90 0 0" animation="property: scale; from:0 0 0 ; to:1 1 1; dur: 3000">
-                <a-plane   position="0 0 -4"  width="5" height="4" color="#7BC8A4" scale="" visible="" material="" geometry=""></a-plane>
-                <a-text position="-0.57781 1.38608 -3.8" value="Moisés Martínez " text="value: Moisés Martínez"></a-text>
-                <a-image position="-1.2935 1.3598 -3.8" src="#my-image" material="" geometry=""></a-image>
-                <a-image scale="0.65 0.65 0.65" position="-1.2935 -0.57152 -3.8" src="#rrssL" material="" geometry=""></a-image>
-                <a-image scale="0.65 0.65 0.65" position="-0.2935 -0.57152 -3.8" src="#rrssT" material="" geometry=""></a-image>
-                <a-image scale="0.55 0.55 0.55" position="0.64 -0.57152 -3.8" src="#phone" material="" geometry=""></a-image>
-                <a-image scale="0.55 0.55 0.55" position="1.53 -0.57152 -3.8" src="#local" material="" geometry=""></a-image>
-                <a-video src="#vPresentation" width="5" height="4" position="0 0 -4.5" animation="property: position; to:5 0 -4.1; dur: 1500; delay:3000"></a-video>
-
-            </a-entity>
-        </a-marker>
-
-        
-
-        <a-entity camera></a-entity>
-        </a-scene>
-        
-    </body>
+      <!-- <a-marker  markerhandler  emitevents="true" cursor="rayOrigin: mouse"  id="idMarker" emitevents="true"  cursor="rayOrigin: mouse" videohandler  preset="hiro">
+        <a-entity  id="bowser-model"   position="0 0 0" class="clickable"
+        gesture-handler>
+            <a-plane   position="0 0 -4"  width="5" height="4" color="#7BC8A4" scale="" visible="" material="" geometry=""></a-plane>
+             <a-text position="-0.57781 1.38608 -3.8" value="Moisés Martínez " text="value: Moisés Martínez"></a-text>
+            <a-image position="-1.2935 1.3598 -3.8" src="#my-image" material="" geometry=""></a-image>
+            <a-image scale="0.65 0.65 0.65" position="-1.2935 -0.57152 -3.8" src="#rrssL" material="" geometry=""></a-image>
+            <a-image scale="0.65 0.65 0.65" position="-0.2935 -0.57152 -3.8" src="#rrssT" material="" geometry=""></a-image>
+            <a-image scale="0.55 0.55 0.55" position="0.64 -0.57152 -3.8" src="#phone" material="" geometry=""></a-image>
+            <a-image scale="0.55 0.55 0.55" position="1.53 -0.57152 -3.8" src="#local" material="" geometry=""></a-image>
+            <a-video src="#vPresentation" width="5" height="4" position="0 0 -4.5" animation="property: position; to:5 0 -4.1; dur: 1500; delay:3000"></a-video>
+ 
+        </a-entity>
+      </a-marker> -->
+      <a-entity camera></a-entity>
+    </a-scene>
+  </body>
 </html>
